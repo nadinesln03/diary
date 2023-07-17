@@ -1,0 +1,76 @@
+{% extends "diary/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <!-- Background image -->
+    <div class="body-background">
+        <img class="background-image" src="{% static 'icons/line2.png' %}" alt="background">
+    </div>
+
+    <h1 id="title">Calendar Page</h1>
+
+    <!-- Back to top button -->
+    <button onclick="backToTopFunction()"  id="backToTopBtn">
+        <div class="backToTopIcon"></div>
+    </button>
+
+    <p id="calendar-text">Filter here by every year and month in which you've posted an Entrie</p>
+
+    <!-- Calendar container -->
+    <div id="calendar-container">
+        {% if years %}
+            {% for year, entry_count in years %}
+                <!-- Year button -->
+                <div class="year-container">
+                    <button class="btn btn-light year-button" href="{% url 'fetch_entries_by_year' year=year %}">{{ year }}</button>
+                </div>
+            {% endfor %}
+        {% else %}
+        <!-- No entries message -->
+        <div class="home-text">
+            <p>You haven't created any Diary Entries yet :( <br> <a id="home-link" href="{% url 'create_entry' %}">Time to get started!</a></p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Month container -->
+    <div class="month-container open">
+        <div id="monthContainer"></div>
+    </div>
+    <!-- Filtered entry container -->
+    <div id="entryContainerFilter"></div>
+
+
+    <!-- Password Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <form id="password-form" method="post">
+                <span class="close" onclick="closePasswordModal()">&times;</span>
+                <h3>Enter Password</h3>
+                <input type="password" name="password-input-check" id="password-input-check" placeholder="Password">
+                <button id="passwordSubmitButton" class="btn btn-light">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Entry view container -->
+    <div id="entryViewContainer">
+         <!-- Deletion confirmation Modal -->
+        <div id="deleteConfirmationModal" class="modal">
+            <div class="modal-content">
+            <p>Are you sure you want to delete this entry?</p>
+            <div class="modal-buttons">
+                <button id="confirmDeleteButton" class="btn btn-danger">Yes</button>
+                <button id="cancelDeleteButton" class="btn btn-secondary">No</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'diary/diary.js' %}"></script>
+{% endblock %}

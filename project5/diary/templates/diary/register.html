@@ -1,0 +1,55 @@
+{% extends "diary/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <div class="login-container">
+        <h2 class="login-title">Register</h2>
+
+        {% if message %}
+            <div class="message">{{ message }}</div>
+        {% endif %}
+
+        <div class="form-container">
+            <form id="register-form" method="POST" action="{% url 'register' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input class="form-control-login" type="text" name="username" placeholder="Username" required>
+                <input class="form-control-login" type="password" name="password" placeholder="Password" required>
+                <input class="form-control-login" type="password" name="confirmation" placeholder="Confirm Password" required>
+
+                <p class="profile-text"><strong>Choose your Profile Picture:</strong></p>
+                <div class="icon-container">
+                    <label class="icon-option">
+                        <input type="radio" name="selected_icon" value="heart">
+                        <img class="icon-image-heart" src="{% static 'icons/heart.png' %}" alt="Heart Icon">
+                    </label>
+
+                    <label class="icon-option">
+                        <input type="radio" name="selected_icon" value="star">
+                        <img class="icon-image-star" src="{% static 'icons/star.png' %}" alt="Star Icon">
+                    </label>
+
+                    <label class="icon-option">
+                        <input type="radio" name="selected_icon" value="smiley">
+                        <img class="icon-image-smiley" src="{% static 'icons/smiley.png' %}" alt="Smiley Icon">
+                    </label>
+
+                    <label class="icon-option">
+                        <input type="radio" name="selected_icon" value="cat">
+                        <img class="icon-image-cat" src="{% static 'icons/cat.png' %}" alt="Cat Icon">
+                    </label>
+                </div>
+
+                <input type="hidden" id="selected-icon-input" name="selected_icon" value="">
+                <button class="login-button" type="submit">Register</button>
+            </form>
+        </div>
+
+        <p class="login-link">Already have an account? <a href="{% url 'login' %}">Log In here.</a></p>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'diary/diary.js' %}"></script>
+{% endblock %}

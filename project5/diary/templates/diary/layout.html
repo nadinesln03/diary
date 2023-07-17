@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}Dear Diary{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'diary/styles.css' %}" rel="stylesheet">
+    {% block script %}
+    {% endblock %}
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-custom justify-content-center">
+        <div class="navbar-title">Dear Diary...</div>
+        <!-- Navbar Toggler (for mobile) -->
+        <button class="navbar-toggler d-lg-none" type="button" onclick="toggleSidebar()">☰</button>
+        {% if user.is_authenticated %}
+            <!-- Display for Authenticated Users -->
+            <div class="collapse navbar-collapse justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Latest Entries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'calendar' %}">Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'mood_view' %}">Mood</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_entry' %}">Create</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-left">
+                <a class="nav-link logout-link" href="{% url 'logout' %}">Logout</a>
+            </div>
+            <div class="navbar-right">
+                <span class="username">Signed in as <strong>{{ user.username }}</strong></span>
+                <img class="profile-picture" src="{% static 'icons/' %}{{ user.selected_icon }}.png" alt="Profile Picture">
+            </div>
+        {% else %}
+            <!-- Display for Unauthenticated Users -->
+            <div class="collapse navbar-collapse justify-content-center">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Register</a>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+    </nav>
+
+    <!-- Sidebar (Hidden by default) -->
+    <div class="sidebar" style="display:none" id="sidebar">
+        <!-- Close Sidebar Button -->
+        <button onclick="toggleSidebar()" class="sidebar-close-button">&times;</button>
+        {% if user.is_authenticated %}
+            <!-- Display for Authenticated Users in Sidebar -->
+            <img class="profile-picture navbar-element" src="{% static 'icons/' %}{{ user.selected_icon }}.png" alt="Profile Picture">
+            <span class="username navbar-element">Signed in as <strong>{{ user.username }}</strong></span>
+            <hr>
+            <!-- Sidebar Links for Authenticated Users -->
+            <a class="sidebar-link" href="{% url 'home' %}">Latest Entries</a>
+            <a class="sidebar-link" href="{% url 'calendar' %}">Calendar</a>
+            <a class="sidebar-link" href="{% url 'mood_view' %}">Mood</a>
+            <a class="sidebar-link" href="{% url 'create_entry' %}">Create</a>
+            <!-- Logout Link in Sidebar -->
+            <a class="sidebar-link logout-link" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <!-- Display for Unauthenticated Users in Sidebar -->
+            <a class="sidebar-link" href="{% url 'login' %}">Login</a>
+            <a class="sidebar-link" href="{% url 'register' %}">Register</a>
+        {% endif %}
+    </div>
+
+
+    {% block body %}
+    {% endblock %}
+
+</body>
+
+</html>

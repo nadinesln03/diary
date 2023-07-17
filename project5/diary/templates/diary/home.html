@@ -1,0 +1,79 @@
+{% extends "diary/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <!-- Background image -->
+    <div class="body-background">
+        <img class="background-image" src="{% static 'icons/line2.png' %}" alt="background">
+    </div>
+
+    <h1 id="title">Your Diary Entries</h1>
+
+    <!-- Back to top button -->
+    <button onclick="backToTopFunction()"  id="backToTopBtn">
+        <div class="backToTopIcon"></div>
+    </button>
+
+        {% if entries %}
+            <div class="grid-container">
+                <div id="entryContainer" class="entry-container">
+                    {% for entry in entries %}
+                        <!-- Entry card -->
+                        <div class="entry-card" data-entry-id="{{ entry.id }}" data-password_required="{{ entry.password_required }}">
+                            <p class="entry-title">Entry for: {{  entry.entry_date|date:"F d, Y" }}</p>
+                            <hr>
+                            {% if entry.password_required %}
+                                <p class="entry-content-private">This content is not viewable</p>
+                            {% else %}
+                                <p class="entry-content">{{ entry.content|slice:":45" }} ...</p>
+                            {% endif %}
+                            <div class="entry-meta">
+                                <span class="entry-date">Created on {{ entry.created_at }}</span>
+                                <img class="entry-icon" src="{% static 'icons/' %}{{ entry.mood }}.png" alt="Mood Icon">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <!-- No entries message -->
+            <div class="home-text">
+                <p>You haven't created any Diary Entries yet :( <br> <a id="home-link" href="{% url 'create_entry' %}">Time to get started!</a></p>
+            </div>
+        {% endif %}
+
+
+    <!-- Password Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <form id="password-form" method="post">
+                <span class="close" onclick="closePasswordModal()">&times;</span>
+                <h3>Enter Password</h3>
+                <input type="password" name="password-input-check" id="password-input-check" placeholder="Password">
+                <button id="passwordSubmitButton" class="btn btn-light">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hidden input for storing the username -->
+    <input type="hidden" id="usernameInput" value="{{ username }}">
+
+    <div id="entryViewContainer">
+        <!-- Deletion confirmation Modal -->
+        <div id="deleteConfirmationModal" class="modal">
+            <div class="modal-content">
+            <p>Are you sure you want to delete this entry?</p>
+            <div class="modal-buttons">
+                <button id="confirmDeleteButton" class="btn btn-danger">Yes</button>
+                <button id="cancelDeleteButton" class="btn btn-secondary">No</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'diary/diary.js' %}"></script>
+{% endblock %}

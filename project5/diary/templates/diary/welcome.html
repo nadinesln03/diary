@@ -1,0 +1,32 @@
+{% extends "diary/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <div class="body-background-welcome">
+        <img class="background-image" src="{% static 'icons/background.png' %}" alt="background">
+    </div>
+
+    {% if user.is_authenticated %}
+
+    {% else %}
+
+        <div class="welcome-container">
+            <div class="welcome-date">Today is {{ current_date }}</div>
+            <div class="welcome-title">
+                <div>Welcome!</div>
+            </div>
+            <div class="welcome-text">You want to write your Diary Entries online?</div>
+            <div class="welcome-text-bottom">Then this is the perfect place for you!</div>
+            <div class="welcome-link">
+                <p>Get started today and create your new account <a id="welcome-link-a" href="{% url 'register' %}">here</a></p>
+            </div>
+        </div>
+    
+    {% endif %}
+    
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'diary/diary.js' %}"></script>
+{% endblock %}

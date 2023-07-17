@@ -1,0 +1,76 @@
+{% extends "diary/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <!-- Background image -->
+    <div class="body-background">
+        <img class="background-image" src="{% static 'icons/line2.png' %}" alt="background">
+    </div>
+
+    <h1 id="title">Mood Page</h1>
+
+    <!-- Back to top button -->
+    <button onclick="backToTopFunction()"  id="backToTopBtn">
+        <div class="backToTopIcon"></div>
+    </button>
+
+    <p id="mood-text">Filter here by mood</p>
+
+    <!-- Mood filtering container -->
+    <div id="container-mood-filter">
+        <div id="icon-container-mood-filter">
+            <!-- Radio buttons for mood selection -->
+            <label class="icon-option">
+                <input type="radio" name="mood" value="happy-smiley" onclick="fetchEntriesByMood('happy-smiley')">
+                <img class="icon-image-happy-filter" src="{% static 'icons/happy-smiley.png' %}" alt="Happy Icon">
+            </label>
+            <label class="icon-option">
+                <input type="radio" name="mood" value="neutral-smiley" onclick="fetchEntriesByMood('neutral-smiley')">
+                <img class="icon-image-neutral-filter" src="{% static 'icons/neutral-smiley.png' %}" alt="Neutral Icon">
+            </label>
+            <label class="icon-option">
+                <input type="radio" name="mood" value="sad-smiley" onclick="fetchEntriesByMood('sad-smiley')">
+                <img class="icon-image-sad-filter" src="{% static 'icons/sad-smiley.png' %}" alt="Sad Icon">
+            </label>
+        </div>
+    </div>
+
+    <!-- Hidden input field to store the selected mood -->
+    <input type="hidden" id="selected-icon-input" name="selected_icon">
+    <div id="entryContainerFilter">
+        <div id="moodMessage"></div>
+    </div>
+
+
+    <!-- Password Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <form id="password-form" method="post">
+                <span class="close" onclick="closePasswordModal()">&times;</span>
+                <h3>Enter Password</h3>
+                <input type="password" name="password-input-check" id="password-input-check" placeholder="Password">
+                <button id="passwordSubmitButton" class="btn btn-light">Submit</button>
+            </form>
+        </div>
+    </div>
+
+
+    <div id="entryViewContainer">
+        <!-- Confirmation of entry deletion Modal -->
+        <div id="deleteConfirmationModal" class="modal">
+            <div class="modal-content">
+            <p>Are you sure you want to delete this entry?</p>
+            <div class="modal-buttons">
+                <button id="confirmDeleteButton" class="btn btn-danger">Yes</button>
+                <button id="cancelDeleteButton" class="btn btn-secondary">No</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'diary/diary.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "diary/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+
+    <!-- Background image -->
+    <div class="body-background">
+        <img class="background-image" src="{% static 'icons/line2.png' %}" alt="background">
+    </div>
+
+    <h2 id="title">Create a Diary Entry</h2>
+
+    <div class="col-12" id="create-container">
+        <form method="post" action="{% url 'create_entry' %}">
+            {% csrf_token %}
+        
+            <div class="form-group">
+                <label for="entry-date"><strong>Entry Date:</strong></label>
+                <input class="form-control-create" type="date" id="entry-date" name="entry_date" min="2018-01-01" max="{{ current_date }}" required>
+            </div>
+            
+            <div class="form-group">
+                <textarea class="form-control-create textarea-large" name="content" id="content" placeholder="Dear Diary..." required></textarea>
+            </div>
+        
+            <div class="form-group">
+                <input class="form-control-create" type="hidden" id="selected-icon-input" name="selected_icon" value="" required>
+                <p class="profile-text"><strong>Choose your current Mood:</strong></p>
+                <div class="icon-container-mood">
+                    <!-- Radio buttons for mood selection -->
+                    <label class="icon-option">
+                        <input type="radio" name="mood" value="happy-smiley" required>
+                        <img class="icon-image-happy" src="{% static 'icons/happy-smiley.png' %}" alt="Happy Icon">
+                    </label>
+                    <label class="icon-option">
+                        <input type="radio" name="mood" value="neutral-smiley" required>
+                        <img class="icon-image-neutral" src="{% static 'icons/neutral-smiley.png' %}" alt="Neutral Icon">
+                    </label>
+                    <label class="icon-option">
+                        <input type="radio" name="mood" value="sad-smiley" required>
+                        <img class="icon-image-sad" src="{% static 'icons/sad-smiley.png' %}" alt="Sad Icon">
+                    </label>
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <p class="profile-text"><strong>Do you want your entry to be secured by a password?</strong></p>
+                <div>
+                    <!-- Radio buttons for password protection selection -->
+                    <label>
+                        <input type="radio" name="password_required" value="true" onclick="togglePasswordField(true)" required>
+                        Yes
+                    </label>
+                    <label>
+                        <input type="radio" name="password_required" value="false" onclick="togglePasswordField(false)" required>
+                        No
+                    </label>
+                </div>
+            </div>
+            <div class="form-group" id="password-field" style="display: none;">
+                <!-- Password input field and confirmation field -->
+                <div class="form-group">
+                    <input id="password-input" class="form-control-create" type="password" name="password" placeholder="Enter password" oninput="validatePassword()" required>
+                </div>
+                <div class="form-group">
+                    <input id="confirm-password-input" class="form-control-create" type="password" name="confirm_password" placeholder="Confirm password" oninput="validatePassword()" required>
+                </div>
+                <!-- Password validation status -->
+                <p id="password-status" class="password-status-hide"></p>
+            </div>
+        
+            <!-- Submit button for creating the diary entry -->
+            <button id="submit-button" class="create-button" type="submit">Create Entry</button>
+        </form>
+        
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'diary/diary.js' %}"></script>
+{% endblock %}
