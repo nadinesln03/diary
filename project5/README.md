@@ -14,49 +14,55 @@ This project was a personal challenge for me as it involved working with technol
 ## Code Overview
 I will give a quick overview here about what is in each file I have created or modified
 
-diary
-    >diary
+- diary/diary/models.py:
+    - Defines the models for the diary app, including User and Entry, representing database tables for user accounts and diary entries
 
-        >>models.py
-            Defines the models for the diary app. It contains the definitions for the database tables User and Entry
-        >>admin.py
-            This code registers the User and Entry models with the Django admin interface
-        >>urls.py
-            This code defines API endpoints for the Dear Diary application, enabling users to interact with various features such as login, registration, creating diary entries, viewing entries by date and mood, and navigating a calendar interface
-        >>views.py
-            Contains Django views that handle different aspects of the Dear Diary application, including user authentication, diary entry creation, filtering entries, and displaying views for the users. These views connect the application's logic with the database and templates
+- diary/diary/admin.py:
+    - Registers the User and Entry models with the Django admin interface, allowing admin users to manage user accounts and diary entries
 
-        >>static
-            >>diary
-                >>diary.js
-                    Is responsible for enhancing the user experience and interactivity on the client-side by handling dynamic content, event handling, and communication with the server through APIs
-                >>styles.css
-                    Is responsible for defining the visual presentation and layout of the web pages, including fonts, colors, spacing, and overall styling of HTML elements
-            >>icons
-                Stores all icons and images I have used thoughout my application
+- diary/diary/urls.py:
+    - Defines API endpoints for the Dear Diary application, enabling users to interact with various features, such as login, registration, creating diary entries, viewing entries by date and mood, and navigating a calendar interface
 
-        >>templates
-            >>diary
-                >>layout.html
-                    Represents the layout of the Dear Diary application
-                >>welcome.html
-                    Displays a welcome page for every user who is visiting the page
-                >>login.html
-                    Provides a login form with fields for username and password to let the user log in
-                >>register.html
-                    Provides a registration form for new users to create an account. It allows users to enter a username, password, and confirm the password, along with choosing a profile picture
-                >>home.html
-                    Displays the user's diary entries with a title, entry cards showing entry information, and provides options for viewing, deleting, and entering passwords for private entries
-                >>create.html
-                    Provides a form for creating a new diary entry with fields for entry date, content, mood selection, and optional password protection
-                >>mood.html
-                    Allows users to filter diary entries by mood and view the entries accordingly
-                >>calendar.html
-                    Displays a calendar allowing users to filter their diary entries by year and month, enabling them to view entries posted in specific time periods
+- diary/diary/views.py:
+    - Contains Django views that handle different aspects of the Dear Diary application, including user authentication, diary entry creation, filtering entries, and displaying views for the users. These views connect the application's logic with the database and templates
 
-    >project5
-        >>settings.py:
-            A configuration file in Django that defines various settings for the web application, such as database connections, installed apps, and time zones
-        >>urls.py:
-            Configures URL patterns for the project5 project, specifying how URLs are mapped to views. I added a URL pattern to include the diary app's URLs, which allows access to the views and functionality of the diary app from the main project's URLs.
+- diary/static/diary/diary.js:
+    - Responsible for enhancing the user experience and interactivity on the client-side by handling dynamic content, event handling, and communication with the server through APIs
+
+- diary/static/diary/styles.css:
+    - Defines the visual presentation and layout of the web pages, including fonts, colors, spacing, and overall styling of HTML elements
+
+- diary/static/icons/:
+    - Stores all icons and images used throughout the application
+
+- diary/templates/diary/layout.html:
+    - Represents the layout template for the "Dear Diary" application, providing a common structure for all pages
+
+- diary/templates/diary/welcome.html:
+    - Displays a welcome page for every user who visits the application
+
+- diary/templates/diary/login.html:
+    - Provides a login form with fields for username and password to allow users to log in
+
+- diary/templates/diary/register.html:
+    - Provides a registration form for new users to create an account, allowing them to enter a username, password, and confirm the password, along with choosing a profile picture
+
+- diary/templates/diary/home.html:
+    - Displays the user's diary entries with a title, entry cards showing entry information, and provides options for viewing, deleting, and entering passwords for private entries
+
+- diary/templates/diary/create.html:
+    - Provides a form for creating a new diary entry with fields for entry date, content, mood selection, and optional password protection
+
+- diary/templates/diary/mood.html:
+    - Allows users to filter diary entries by mood and view the entries accordingly
+
+- diary/templates/diary/calendar.html:
+    - Displays a calendar, enabling users to filter their diary entries by year and month, and view entries posted in specific time periods
+
+- project5/settings.py:
+    - A configuration file in Django that defines various settings for the web application, such as database connections, installed apps, and time zones
+
+- project5/urls.py:
+    - Configures URL patterns for the "Dear Diary" project, specifying how URLs are mapped to views. It includes the diary app's URLs, allowing access to its views and functionality from the main project's URLs
+
 
