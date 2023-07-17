@@ -68,9 +68,9 @@ Here, I will give a quick overview about what each file contains I have created 
 
 
 ## How to run my application
-1.  ~~~python manage.py makemigrations diary~~~
-2. ~~~ python manage.py migrate~~~
-3.  ~~~python manage.py runserver~~~
+1.  `python manage.py makemigrations diary`
+2. `python manage.py migrate`
+3.  `python manage.py runserver`
 
 No additional installations are required, and all the necessary Python packages are included in the views.py file.
 Once you run the application and open the webpage, you will be greeted with the welcome.html page. However, in order to access the full functionality of the application, registration or login into an existing account is necessary.
