@@ -1,18 +1,19 @@
 # DEAR DIARY... | Capstone CS50W
 
 ## Overview
-My CS50W final project is the Dear Diary application, providing users a simple and modern online platform to write and manage diary entries. Users can create, edit, and delete entries, assign moods with smileys, and filter content by date and mood. Privacy is ensured, offering a personal and intimate space for self-expression. The application's focus on simplicity and ease of use aims to enable users to capture their experiences and emotions effectively.
+My CS50W final project is the Dear Diary application, providing users a simple and modern online platform to write and manage diary entries. Users can create, edit, and delete entries, assign moods with smileys, and filter content by date and mood. The application's focus on simplicity and ease of use aims to enable users to capture their experiences and emotions effectively.
 
 
 ## Distinctiveness and Complexity
-The Dear Diary project distinguishes itself from other projects in the course by offering a personal and intimate space for self-expression, rather than being an e-commerce platform or a social networking site. It provides users with a modern and straightforward digital diary experience, akin to a personalized blog. The focus on individual experiences, emotions, and thoughts, coupled with features like password protection and mood-based filtering, sets it apart as a unique and private platform.
+The Dear Diary project distinguishes itself from other projects in the course by offering a personal and intimate space for self-expression, rather than being an e-commerce platform or a social networking site. It provides users with a modern and straightforward digital diary experience, akin to a personalized blog. The focus on individual experiences, emotions, and thoughts, coupled with features like password protection or mood-based filtering, sets it apart from the precvious projects.
 
 
-This project was a personal challenge for me as it involved working with technologies and concepts I had not previously encountered. Before starting this course, I had limited knowledge in web programming, and I started learning JavaScript during the courses lessons, that is why I tried to set the focus on programming with JavaScript to enhance my skills during this project. Throughout the project, I challenged myself to implement complex features, I have not worked with before. One of the notable challenges I faced was creating a mood filter page with custom radio buttons and efficiently fetching corresponding entries. Similar challenges arose in other parts of the project, such as the profile picture selection during registration and mood selection when creating an entry. Implementing the calendar functionality also presented hurdles, as I had to organize and display entries by years, months, and individual diary entries. However, I effectively overcame these obstacles by utilizing Django's date-based queries, specifically TruncMonth and __range, to accurately retrieve and present entries within specific timeframes. Additionally, I introduced a password protection feature to enhance privacy and security, and this required working with modals, handling form submissions, validating passwords, and ensuring secure backend storage. As mobile responsiveness being a requirement for this project, I learned to implement elements such as sidebars and collapsible features.
+This project was a personal challenge for me as it involved working with technologies and concepts I had not previously encountered. Before starting this course, I had limited knowledge in web programming, and I started learning JavaScript during the courses lessons, that is why I tried to set the focus on programming with JavaScript to enhance my skills during this project. Throughout the project, I challenged myself to implement complex features, I have not worked with before. One of the challenges included creating a mood filter page with custom radio buttons and efficiently fetching corresponding entries. Similar challenges arose in other parts of the project, such as the profile picture selection during registration and mood selection when creating an entry. Implementing the calendar functionality was the complexed feauture on this project, as I had to organize and display entries by years, months, and individual diary entries. I learned a lot by implementing this problem, for example Django's date-based queries, specifically TruncMonth and __range, to accurately retrieve and present entries within specific timeframes. Additionally, I introduced a password protection feature to enhance privacy and security, and this required working with modals, handling form submissions, validating passwords, and ensuring secure backend storage. As mobile responsiveness being a requirement for this project, I learned to implement elements such as sidebars and collapsible features.
 
 
 ## Code Overview
-I will give a quick overview here about what is in each file I have created or modified
+Here, I will give a quick overview about what each file contains I have created or modified
+
 
 - diary/diary/models.py:
     - Defines the models for the diary app, including User and Entry, representing database tables for user accounts and diary entries
@@ -62,6 +63,17 @@ I will give a quick overview here about what is in each file I have created or m
 - project5/settings.py:
     - A configuration file in Django that defines various settings for the web application, such as database connections, installed apps, and time zones
 
+- project5/urls.py:
+    - Configures URL patterns for the "Dear Diary" project, specifying how URLs are mapped to views. It includes the diary app's URLs, allowing access to its views and functionality from the main project's URLs
+
+
+## How to run my application
+1. python manage.py makemigrations diary
+2. python manage.py migrate
+3. python manage.py runserver
+
+No additional installations are required, and all the necessary Python packages are included in the views.py file.
+Once you run the application and open the webpage, you will be greeted with the welcome.html page. However, in order to access the full functionality of the application, registration or login into an existing account is necessary.
 - project5/urls.py:
     - Configures URL patterns for the "Dear Diary" project, specifying how URLs are mapped to views. It includes the diary app's URLs, allowing access to its views and functionality from the main project's URLs
 
